@@ -15,6 +15,62 @@
 
 “全部聊天记录”是指当前认证用户通过飞书 OpenAPI 可以访问的全部会话及平台仍保留的消息。已删除、已撤回、超过企业保留期限或没有权限访问的数据无法恢复。
 
+## 从 GitHub 安装
+
+以下示例假设 GitHub 仓库地址为：
+
+```text
+https://github.com/Ezhana/lark-chat-export-skill
+```
+
+### 推荐：直接让 Codex 安装
+
+在 Codex 中新建任务并发送：
+
+```text
+请使用 skill-installer 从 https://github.com/Ezhana/lark-chat-export-skill
+的仓库根目录安装 lark-chat-export Skill。
+```
+
+Codex 会把 Skill 安装到自己的 Skills 目录。安装完成后，在下一轮请求或新任务中使用：
+
+```text
+使用 $lark-chat-export 备份我当前有权访问的飞书聊天记录，
+同时生成 HTML 和 Markdown，不要修改原始数据。
+```
+
+### 使用 Codex 内置安装脚本
+
+macOS、Linux 或 WSL：
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo Ezhana/lark-chat-export-skill \
+  --path . \
+  --name lark-chat-export
+```
+
+安装器默认读取仓库的 `main` 分支。如果发布的是其他分支，需要增加：
+
+```bash
+--ref <branch-name>
+```
+
+建议使用标准 `main` 默认分支，避免增加无意义的安装障碍。
+
+### 手动安装
+
+也可以直接克隆到 Codex Skills 目录：
+
+```bash
+git clone https://github.com/Ezhana/lark-chat-export-skill.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/lark-chat-export"
+```
+
+重新启动 Codex 或开启新任务后，使用 `$lark-chat-export` 调用。
+
+> 安装 Skill 不会自动安装飞书 `lark-cli`，也不会自动获得飞书权限。首次使用前仍需完成下方的环境配置和用户授权。
+
 ## 主要能力
 
 - 枚举当前用户可见的群聊和一对一私聊。

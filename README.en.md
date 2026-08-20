@@ -15,6 +15,62 @@ The project separates two kinds of data:
 
 “All chats” means all conversations and retained messages accessible to the authenticated user through Feishu OpenAPI. Deleted, recalled, expired, or unauthorized records cannot be recovered.
 
+## Install from GitHub
+
+The examples below assume this GitHub repository URL:
+
+```text
+https://github.com/Ezhana/lark-chat-export-skill
+```
+
+### Recommended: ask Codex to install it
+
+Start a new Codex task and send:
+
+```text
+Use skill-installer to install the lark-chat-export Skill from the repository root at
+https://github.com/Ezhana/lark-chat-export-skill.
+```
+
+Codex installs the Skill into its Skills directory. On the next turn or in a new task, invoke it with:
+
+```text
+Use $lark-chat-export to back up every Feishu/Lark chat I can currently access,
+then generate HTML and Markdown without modifying the raw export.
+```
+
+### Use the bundled Codex installer
+
+On macOS, Linux, or WSL:
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo Ezhana/lark-chat-export-skill \
+  --path . \
+  --name lark-chat-export
+```
+
+The installer reads the repository's `main` branch by default. For another branch, add:
+
+```bash
+--ref <branch-name>
+```
+
+For users should use the conventional `main` default branch instead of imposing this unnecessary installation detail.
+
+### Manual installation
+
+You can also clone the repository directly into the Codex Skills directory:
+
+```bash
+git clone https://github.com/Ezhana/lark-chat-export-skill.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/lark-chat-export"
+```
+
+Restart Codex or open a new task, then invoke `$lark-chat-export`.
+
+> Installing the Skill does not install Feishu/Lark `lark-cli` or grant Feishu permissions. Complete the environment setup and user authorization below before the first export.
+
 ## Features
 
 - Enumerates visible group and P2P chats.
