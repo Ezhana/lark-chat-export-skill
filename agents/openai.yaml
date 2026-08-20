@@ -1,0 +1,4 @@
+interface:
+  display_name: "飞书聊天导出"
+  short_description: "安全导出飞书聊天并生成可读 HTML 与 Markdown"
+  default_prompt: "使用 $lark-chat-export 将我的飞书聊天记录安全导出为 HTML 和 Markdown。"
